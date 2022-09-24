@@ -69,6 +69,16 @@ Activate the virtual environment and install the requirements file.
 
 ``` pip3 install -r requirements.txt ```
 
+### Setup Environment variables
+
+```
+DB_NAME= <db-name>
+DB_USER = <db-user>
+DB_PASSWORD = <db-password>
+DB_HOST = <db-host>
+DB_PORT = <port>
+```
+
 #### Run the migration files:
 
 ``` python manage.py makemigrations ```
