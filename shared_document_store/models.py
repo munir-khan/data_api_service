@@ -14,20 +14,18 @@ class Topic(Base):
         return self.name
 
 
-class Folder(Base):
+class Document(Base):
     name = models.CharField(max_length=50)
-    parent_id = models.IntegerField()
+    topics = models.ForeignKey(Topic, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
 
 
-class Document(Base):
+class Folder(Base):
     name = models.CharField(max_length=50)
-    type = models.CharField(max_length=20)
-    path = models.CharField(max_length=700)
-    topics = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    folders = models.ForeignKey(Folder, on_delete=models.CASCADE)
+    path = models.CharField(max_length=700, default=None)
+    documents = models.ForeignKey(Document, on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return self.name
