@@ -1,0 +1,1 @@
+web: gunicorn DataApiService.wsgi --log-file -
