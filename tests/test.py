@@ -1,19 +1,13 @@
 import json
-from os.path import join
 from http import HTTPStatus
 
-from django.conf import settings
 from django.test import TestCase, RequestFactory
 from django.contrib.auth.models import User
 
-from rest_framework.test import force_authenticate
 from rest_framework.test import APIClient
 
-# from api.views import DogViewSet
-# from api.models import Dog
-
-from shared_document_store.api.views import TopicView, FolderView, DocumentView
-from shared_document_store.models import Topics, Folders, Documents
+from shared_document_store.api.views import TopicView, FolderView
+from shared_document_store.models import Topics, Folders
 
 
 class TopicViewSetTest(TestCase):
