@@ -14,8 +14,8 @@ class FolderSerializer(serializers.ModelSerializer):
         path = validated_data['path']
         path_exist = Folders.objects.filter(path=path).first()
         if not path_exist:
-            folder_name = path.split('/')[-1]
-            validated_data['name'] = folder_name.title()
+            folder_name = list(filter(None, path.split('/')))[-1]
+            validated_data['name'] = folder_name
         else:
             raise serializers.ValidationError({"error": "path already exist"})
         return super(FolderSerializer, self).create(validated_data)
