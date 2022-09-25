@@ -151,3 +151,8 @@ To access db in heroku:
 ``` heroku pg:psql -a <app-name> ```
 
 ## Tests
+
+The project uses unit tests, to start:
+
+`` python manage.py test``
+
