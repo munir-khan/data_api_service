@@ -49,19 +49,19 @@ document with its association with a topic.
 
 1. Add a Topic
 
-`curl --location --request POST 'http://0.0.0.0:8080/topic/' \
+`curl --location --request POST 'http://data-api-service.herokuapp.com/topic/' \
 --form 'name="topic_2"' \
 --form 'description="t2 desc"'`
  
 2. Add a Folder
 
-`curl --location --request POST 'http://0.0.0.0:8080/folder/' \
+`curl --location --request POST 'http://data-api-service.herokuapp.com/folder/' \
 --form 'path="f1/f2/f3/"' \
 --form 'name="folder_name"'`
 
 3. Add a Document
 
-`curl --location --request POST 'http://0.0.0.0:8080/document/' \
+`curl --location --request POST 'http://data-api-service.herokuapp.com/document/' \
 --form 'name="doc_1"' \
 --form 'folder_path="5"' \
 --form 'topic_name="1"'`
@@ -145,5 +145,9 @@ python we are using.
 To run migrations in heroku:
 
 ``` heroku run python manage.py migrate -a <app-name> ```
+
+To access db in heroku:
+
+``` heroku pg:psql -a <app-name> ```
 
 ## Tests
