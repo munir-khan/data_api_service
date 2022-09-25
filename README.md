@@ -156,3 +156,26 @@ The project uses unit tests, to start:
 
 `` python manage.py test``
 
+## Enhancements
+
+The project was time-constraint and hence the room for enhancement is
+there, Given the time I had rectified and focused more on the following:
+
+* Better DB Schema
+
+``` Segregating and normalizing more fields ```
+* Test Cases
+
+``` Further test cases to cover edge cases ```
+
+* Linters
+
+``` Use of linters like black, flake8 ensuring PEP-8 standards ```
+
+* Type Hinting & doc str
+
+``` Using type hinting and proper doc strings ```
+
+* CI/CD
+
+``` Implementing auto deployments for heroku ```
