@@ -170,7 +170,7 @@ there, Given the time I had rectified and focused more on the following:
 
 * Linters
 
-``` Use of linters like black, flake8 ensuring PEP-8 standards ```
+``` Use of linters like black, flake8 ensuring PEP-8 standards and removing unused imports along with spacings ```
 
 * Type Hinting & doc str
 
