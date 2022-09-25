@@ -6,7 +6,15 @@ class Base(models.Model):
     update_at = models.DateTimeField(auto_now=True)
 
 
-class Topic(Base):
+class Folders(Base):
+    name = models.CharField(max_length=50)
+    path = models.CharField(max_length=700, default=None)
+
+    def __str__(self):
+        return self.path
+
+
+class Topics(Base):
     name = models.CharField(max_length=50)
     description = models.TextField()
 
@@ -14,18 +22,10 @@ class Topic(Base):
         return self.name
 
 
-class Document(Base):
+class Documents(Base):
     name = models.CharField(max_length=50)
-    topics = models.ForeignKey(Topic, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
-
-
-class Folder(Base):
-    name = models.CharField(max_length=50)
-    path = models.CharField(max_length=700, default=None)
-    documents = models.ForeignKey(Document, on_delete=models.CASCADE, default=None)
+    folder = models.ForeignKey(Folders, related_name="folder_documents", on_delete=models.CASCADE, default=None)
+    topic = models.ForeignKey(Topics, related_name="topic_documents", on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return self.name

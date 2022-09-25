@@ -1,28 +1,27 @@
 from rest_framework import viewsets
-from django.db.models import Q
 
-from shared_document_store.models import Topic, Folder, Document
+from shared_document_store.models import Topics, Folders, Documents
 from shared_document_store.api.serializers import (TopicSerializer, FolderSerializer, DocumentSerializer)
-
-
-class TopicView(viewsets.ModelViewSet):
-    queryset = Topic.objects.all()
-    serializer_class = TopicSerializer
 
 
 class FolderView(viewsets.ModelViewSet):
     serializer_class = FolderSerializer
+    queryset = Documents.objects.all()
+
+
+class DocumentView(viewsets.ModelViewSet):
+    serializer_class = DocumentSerializer
 
     def get_queryset(self):
         topic = self.request.query_params.get('topic')
         folder = self.request.query_params.get('folder')
-        document_ids = Document.objects.filter(topics__name=topic).values_list('id', flat=True)
-        folder_document_id = Q(documents_id__in=document_ids)
-        folder_name = Q(name=folder)
-        query_set = Folder.objects.filter(folder_document_id & folder_name)
+        if topic and folder:
+            query_set = Documents.objects.filter(topic__name=topic.title()).filter(folder__name=folder.title()).all()
+        else:
+            query_set = Folders.objects.all()
         return query_set
 
 
-class DocumentView(viewsets.ModelViewSet):
-    queryset = Document.objects.all()
-    serializer_class = DocumentSerializer
+class TopicView(viewsets.ModelViewSet):
+    serializer_class = TopicSerializer
+    queryset = Topics.objects.all()

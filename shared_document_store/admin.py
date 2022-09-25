@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from .models import Folder, Document, Topic
+from .models import Folders, Documents, Topics
 
-admin.site.register([Folder, Document, Topic])
+admin.site.register([Folders, Documents, Topics])

@@ -44,12 +44,35 @@ associated to document ``file.ext``
 
 ## System Flow
 
-A user could add topics and then a folder that'd be followed by a document 
-with its association with a topic.
+A user should add topics and then a folder that'd be followed by adding a
+document with its association with a topic.
+
+1. Add a Topic
+
+`curl --location --request POST 'http://0.0.0.0:8080/topic/' \
+--form 'name="topic_2"' \
+--form 'description="t2 desc"'`
+ 
+2. Add a Folder
+
+`curl --location --request POST 'http://0.0.0.0:8080/folder/' \
+--form 'path="f1/f2/f3/"' \
+--form 'name="folder_name"'`
+
+3. Add a Document
+
+`curl --location --request POST 'http://0.0.0.0:8080/document/' \
+--form 'name="doc_1"' \
+--form 'folder_path="5"' \
+--form 'topic_name="1"'`
 
 When fetching the documents, the user is expected to provide a folder name and
 a topic, the system will search for all the documents in that folder that are
 associated with the provided topic.
+
+1. GET documents in a folder associated to a topic by single call
+
+`curl --location --request GET 'http://0.0.0.0:8080/folder/?topic=topic_1&folder=5'`
 
 ## Data Modelling
 
